@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Cloning the repository"
+      - git clone https://github.com/612284/multithreading.git
+      - cd multithreading
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Running single-threaded tests"
+      - python -m unittest discover -s . -p "test_main.py" > single_test.log
+
+artifacts:
+  files:
+    - multithreading/single_test.log
+  discard-paths: yes

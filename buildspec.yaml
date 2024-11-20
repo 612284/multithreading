@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  variables:
+    NUM_RUNS: "100"  # Кількість виконань тестів
+
+phases:
+  pre_build:
+    commands:
+      - echo "Cloning the repository"
+      - git clone https://github.com/612284/multithreading.git
+      - cd multithreading
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt  # Встановлення залежностей
+
+  build:
+    commands:
+      - echo "Running multi-threaded and multi-processing tests"
+      - python -m unittest test_multithreading_multiprocessing.py  # Запуск тесту в багатопоточному та багатопроцесорному режимах
+
+  post_build:
+    commands:
+      - echo "Tests completed"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes

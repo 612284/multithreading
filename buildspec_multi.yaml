@@ -16,7 +16,7 @@ phases:
   build:
     commands:
       - echo "Running multi-threaded tests in loop"
-      - for i in $(seq 1 1000); do pytest -n auto --maxfail=1 --dist=loadscope; done > multi_test.log
+      - for i in $(seq 1 1000); do pytest -n 2 --maxfail=1 --dist=loadscope; done > multi_test.log
 
 artifacts:
   files:

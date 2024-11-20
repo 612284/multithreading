@@ -1,12 +1,7 @@
 import unittest
-import threading
 import multiprocessing
 import time
 from main import count_primes_in_range, simulate_heavy_computation
-
-# Функція для виконання тесту у багатопоточному режимі
-def run_threaded_tests():
-    unittest.main(exit=False)
 
 # Функція для виконання тесту у багатопроцесорному режимі
 def run_multiprocessing_tests():
@@ -37,24 +32,13 @@ class TestHeavyComputation(unittest.TestCase):
 
 # Основна функція для запуску тестів
 def run_tests(num_runs):
-    threads = []
     processes = []
-
-    # Запускаємо тести багатопоточним способом
-    #for _ in range(num_runs):  # Виконуємо 100 разів
-     #   thread = threading.Thread(target=run_threaded_tests)
-     #   threads.append(thread)
-      #  thread.start()
 
     # Запускаємо тести багатопроцесорним способом
     for _ in range(num_runs):  # Виконуємо 100 разів
         process = multiprocessing.Process(target=run_multiprocessing_tests)
         processes.append(process)
         process.start()
-
-    # Очікуємо завершення всіх потоків
-    #for thread in threads:
-      #  thread.join()
 
     # Очікуємо завершення всіх процесів
     for process in processes:

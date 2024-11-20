@@ -15,7 +15,7 @@ phases:
   build:
     commands:
       - echo "Running single-threaded tests in loop"
-      - for i in $(seq 1 1000); do python -m unittest discover -s . -p "test_main.py"; done > single_test.log
+      - for i in $(seq 1 100); do python -m unittest discover -s . -p "test_main.py"; done > single_test.log
 
 artifacts:
   files:

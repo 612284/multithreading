@@ -14,8 +14,8 @@ phases:
       - pip install -r requirements.txt
   build:
     commands:
-      - echo "Running single-threaded tests"
-      - python -m unittest discover -s . -p "test_main.py" > single_test.log
+      - echo "Running single-threaded tests in loop"
+      - for i in $(seq 1 1000); do python -m unittest discover -s . -p "test_main.py"; done > single_test.log
 
 artifacts:
   files:

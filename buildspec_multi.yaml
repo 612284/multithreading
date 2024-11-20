@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Cloning the repository"
+      - git clone https://github.com/612284/multithreading.git
+      - cd multithreading
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo "Installing dependencies"
+      - pip install -r requirements.txt
+      - pip install pytest pytest-xdist
+  build:
+    commands:
+      - echo "Running multi-threaded tests"
+      - pytest -n auto --maxfail=1 --dist=loadscope > multi_test.log
+
+artifacts:
+  files:
+    - multithreading/multi_test.log
+  discard-paths: yes
